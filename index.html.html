@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KAIRO | Catálogo Digital de Accesorios</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Google Fonts: Julius Sans One (Oficial de KAIRO) & Montserrat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Julius+Sans+One&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            kairo: {
+              cream: '#FFF5E8',     // Fondo principal marfil
+              dark: '#393330',      // Texto y elementos oscuros
+              emerald: '#267765',   // Verde esmeralda (WhatsApp / Acciones)
+              lightGreen: '#e6f2ef'
+            }
+          },
+          fontFamily: {
+            julius: ['"Julius Sans One"', 'sans-serif'],
+            sans: ['"Montserrat"', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #FFF5E8;
+      color: #393330;
+      font-family: 'Montserrat', sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .font-kairo {
+      font-family: 'Julius Sans One', sans-serif;
+    }
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col selection:bg-kairo-emerald selection:text-white">
+
+  <!-- ================= PANTALLA 1: BIENVENIDA / PORTADA ================= -->
+  <section id="welcome-screen" class="min-h-screen flex flex-col justify-between items-center px-6 py-12 text-center relative overflow-hidden transition-all duration-500">
+    
+    <div class="my-auto flex flex-col items-center max-w-md w-full animate-fade-in">
+      
+      <!-- Sol Geométrico Vectorizado -->
+      <div class="mb-8 text-kairo-dark">
+        <svg class="w-20 h-20 md:w-24 md:h-24 mx-auto stroke-current" viewBox="0 0 100 100" fill="none" stroke-width="1.8" stroke-linecap="round">
+          <circle cx="50" cy="50" r="12" />
+          <line x1="50" y1="5" x2="50" y2="28" />
+          <line x1="50" y1="72" x2="50" y2="95" />
+          <line x1="5" y1="50" x2="28" y2="50" />
+          <line x1="72" y1="50" x2="95" y2="50" />
+          <line x1="18" y1="18" x2="34" y2="34" />
+          <line x1="66" y1="66" x2="82" y2="82" />
+          <line x1="18" y1="82" x2="34" y2="66" />
+          <line x1="66" y1="34" x2="82" y2="18" />
+        </svg>
+      </div>
+
+      <!-- Nombre de la marca con tipografía Julius Sans One -->
+      <h1 class="font-kairo text-5xl md:text-6xl tracking-[0.25em] pl-[0.25em] text-kairo-dark mb-8 uppercase font-normal">
+        KAIRO
+      </h1>
+
+      <!-- Manifiesto -->
+      <p class="font-serif italic text-kairo-dark/90 text-lg md:text-xl max-w-xs mx-auto mb-10 leading-relaxed font-light">
+        “Compartir y trascender en tus momentos especiales”
+      </p>
+
+      <!-- Botón Principal -->
+      <button onclick="showCatalog()" class="w-full max-w-xs bg-kairo-dark text-kairo-cream font-kairo tracking-[0.2em] py-4 px-8 rounded-full shadow-md hover:bg-black active:scale-95 transition-all text-sm uppercase">
+        Ver Catálogo <i class="fa-solid fa-arrow-down ml-2 text-xs"></i>
+      </button>
+
+    </div>
+
+    <div class="text-xs font-kairo tracking-widest text-kairo-dark/50 uppercase">
+      El tiempo perfecto para brillar
+    </div>
+  </section>
+
+
+  <!-- ================= PANTALLA 2: CATÁLOGO DIGITAL ================= -->
+  <main id="catalog-screen" class="hidden min-h-screen flex-col pb-24">
+    
+    <!-- Encabezado Fijo superior -->
+    <header class="sticky top-0 z-30 bg-kairo-cream/95 backdrop-blur-md border-b border-kairo-dark/10 px-4 py-3">
+      <div class="max-w-md mx-auto flex items-center justify-between">
+        
+        <div onclick="showWelcome()" class="flex items-center gap-2 cursor-pointer group">
+          <svg class="w-6 h-6 stroke-kairo-dark" viewBox="0 0 100 100" fill="none" stroke-width="2">
+            <circle cx="50" cy="50" r="12" />
+            <line x1="50" y1="5" x2="50" y2="28" />
+            <line x1="50" y1="72" x2="50" y2="95" />
+            <line x1="5" y1="50" x2="28" y2="50" />
+            <line x1="72" y1="50" x2="95" y2="50" />
+          </svg>
+          <span class="font-kairo text-lg tracking-[0.2em] font-bold text-kairo-dark">KAIRO</span>
+        </div>
+
+        <!-- Botón protegido con contraseña -->
+        <button onclick="requestAdminAccess()" class="w-9 h-9 flex items-center justify-center rounded-full text-kairo-dark/60 hover:text-kairo-dark hover:bg-kairo-dark/5 active:bg-kairo-dark/10 transition" title="Administración">
+          <i class="fa-solid fa-lock text-xs"></i>
+        </button>
+
+      </div>
+    </header>
+
+    <div class="max-w-md mx-auto w-full px-4 pt-4 flex-1">
+      
+      <!-- Buscador por SKU o Nombre -->
+      <div class="relative mb-4">
+        <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-kairo-dark/40 text-sm"></i>
+        <input type="text" id="searchInput" oninput="renderProducts()" placeholder="Buscar por código (SKU) o nombre..." 
+               class="w-full pl-11 pr-4 py-3 bg-white/80 border border-kairo-dark/15 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-kairo-dark/20 text-kairo-dark placeholder-kairo-dark/40 shadow-sm transition">
+      </div>
+
+      <!-- Filtro por Categorías -->
+      <div class="flex gap-2 overflow-x-auto no-scrollbar mb-5 pb-1">
+        <button onclick="setCategory('todos', this)" class="cat-btn bg-kairo-dark text-kairo-cream px-4 py-2 rounded-full text-xs font-medium tracking-wider whitespace-nowrap transition shadow-sm">Todos</button>
+        <button onclick="setCategory('anillos', this)" class="cat-btn bg-white/80 border border-kairo-dark/15 text-kairo-dark px-4 py-2 rounded-full text-xs font-medium tracking-wider whitespace-nowrap transition">Anillos</button>
+        <button onclick="setCategory('pulseras', this)" class="cat-btn bg-white/80 border border-kairo-dark/15 text-kairo-dark px-4 py-2 rounded-full text-xs font-medium tracking-wider whitespace-nowrap transition">Pulseras</button>
+        <button onclick="setCategory('collares', this)" class="cat-btn bg-white/80 border border-kairo-dark/15 text-kairo-dark px-4 py-2 rounded-full text-xs font-medium tracking-wider whitespace-nowrap transition">Collares</button>
+      </div>
+
+      <!-- Parrilla de Productos (2 Columnas en móvil) -->
+      <div id="productsGrid" class="grid grid-cols-2 gap-3">
+        <!-- Generado dinámicamente -->
+      </div>
+
+      <!-- Mensaje cuando no hay resultados -->
+      <div id="noResults" class="hidden text-center py-16 text-kairo-dark/50">
+        <i class="fa-regular fa-compass text-3xl mb-3"></i>
+        <p class="text-sm font-light">No encontramos accesorios con ese código o nombre.</p>
+      </div>
+
+    </div>
+  </main>
+
+
+  <!-- ================= MODAL DE ADMINISTRACIÓN PROTEGIDO ================= -->
+  <div id="adminModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden flex items-end sm:items-center justify-center p-0 sm:p-4">
+    <div class="bg-kairo-cream w-full max-w-md rounded-t-3xl sm:rounded-3xl max-h-[90vh] overflow-y-auto p-6 shadow-2xl border border-kairo-dark/10 animate-slide-up">
+      
+      <div class="flex justify-between items-center mb-6 pb-3 border-b border-kairo-dark/10">
+        <h3 class="font-kairo text-lg tracking-wider text-kairo-dark font-bold">Gestión de Inventario</h3>
+        <button onclick="toggleAdminPanel()" class="w-8 h-8 rounded-full bg-kairo-dark/5 text-kairo-dark flex items-center justify-center">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- Formulario para Agregar Producto -->
+      <form id="productForm" onsubmit="saveProduct(event)" class="space-y-3 mb-8">
+        <h4 class="text-xs font-bold uppercase tracking-wider text-kairo-dark/60 mb-2">Agregar nuevo accesorio</h4>
+        
+        <div>
+          <label class="text-[11px] font-semibold text-kairo-dark uppercase tracking-wider">Nombre del Producto</label>
+          <input type="text" id="pName" required placeholder="Ej. Anillo Solsticio" class="w-full p-2.5 bg-white border border-kairo-dark/15 rounded-xl text-xs focus:outline-none">
+        </div>
+
+        <div class="grid grid-cols-2 gap-2">
+          <div>
+            <label class="text-[11px] font-semibold text-kairo-dark uppercase tracking-wider">Código / SKU</label>
+            <input type="text" id="pSku" required placeholder="Ej. KAI-AN-01" class="w-full p-2.5 bg-white border border-kairo-dark/15 rounded-xl text-xs uppercase focus:outline-none">
+          </div>
+          <div>
+            <label class="text-[11px] font-semibold text-kairo-dark uppercase tracking-wider">Categoría</label>
+            <select id="pCategory" class="w-full p-2.5 bg-white border border-kairo-dark/15 rounded-xl text-xs focus:outline-none">
+              <option value="anillos">Anillos</option>
+              <option value="pulseras">Pulseras</option>
+              <option value="collares">Collares</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-2">
+          <div>
+            <label class="text-[11px] font-semibold text-kairo-dark uppercase tracking-wider">Precio ($ USD)</label>
+            <input type="number" step="0.01" id="pPrice" required placeholder="12.50" class="w-full p-2.5 bg-white border border-kairo-dark/15 rounded-xl text-xs focus:outline-none">
+          </div>
+          <div>
+            <label class="text-[11px] font-semibold text-kairo-dark uppercase tracking-wider">Material</label>
+            <select id="pMaterial" class="w-full p-2.5 bg-white border border-kairo-dark/15 rounded-xl text-xs focus:outline-none">
+              <option value="Plata Ley 925">Plata Ley 925</option>
+              <option value="Enchape de Oro">Enchape de Oro</option>
+              <option value="Sencillo / Fantasía">Sencillo / Fantasía</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label class="text-[11px] font-semibold text-kairo-dark uppercase tracking-wider">URL de Imagen</label>
+          <input type="url" id="pImg" required placeholder="https://ejemplo.com/imagen.jpg" class="w-full p-2.5 bg-white border border-kairo-dark/15 rounded-xl text-xs focus:outline-none">
+        </div>
+
+        <div>
+          <label class="text-[11px] font-semibold text-kairo-dark uppercase tracking-wider">Disponibilidad</label>
+          <select id="pAvailable" class="w-full p-2.5 bg-white border border-kairo-dark/15 rounded-xl text-xs focus:outline-none">
+            <option value="true">Disponible</option>
+            <option value="false">Agotado</option>
+          </select>
+        </div>
+
+        <button type="submit" class="w-full bg-kairo-dark text-kairo-cream py-3 rounded-xl text-xs font-kairo tracking-widest uppercase hover:bg-black transition">
+          Guardar Accesorio
+        </button>
+      </form>
+
+      <!-- Lista de Inventario Existente -->
+      <div>
+        <h4 class="text-xs font-bold uppercase tracking-wider text-kairo-dark/60 mb-3">Lista de Inventario</h4>
+        <div id="adminProductList" class="space-y-2">
+          <!-- Lista generada -->
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ================= LÓGICA EN JAVASCRIPT ================= -->
+  <script>
+    const PHONE_NUMBER = "50372618260"; 
+    const ADMIN_PIN = "2021"; // CONTRASEÑA ACTUALIZADA A 2021
+
+    const initialProducts = [
+      {
+        id: 1,
+        sku: "KAI-AN-01",
+        name: "Anillo Sol Radiant",
+        category: "anillos",
+        price: 18.00,
+        material: "Plata Ley 925",
+        available: true,
+        img: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&q=80&w=400"
+      },
+      {
+        id: 2,
+        sku: "KAI-COL-01",
+        name: "Collar Dije Helios",
+        category: "collares",
+        price: 22.50,
+        material: "Enchape de Oro",
+        available: true,
+        img: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&q=80&w=400"
+      },
+      {
+        id: 3,
+        sku: "KAI-PUL-01",
+        name: "Pulsera Destello",
+        category: "pulseras",
+        price: 15.00,
+        material: "Plata Ley 925",
+        available: true,
+        img: "https://images.unsplash.com/photo-1611591475111-9f79c294fb82?auto=format&fit=crop&q=80&w=400"
+      }
+    ];
+
+    let products = JSON.parse(localStorage.getItem('kairo_inventory')) || initialProducts;
+    let selectedCategory = 'todos';
+
+    function requestAdminAccess() {
+      const pin = prompt("Ingresa la clave de administración de KAIRO:");
+      if (pin === ADMIN_PIN) {
+        toggleAdminPanel();
+      } else if (pin !== null) {
+        alert("Clave incorrecta.");
+      }
+    }
+
+    function showCatalog() {
+      document.getElementById('welcome-screen').classList.add('hidden');
+      document.getElementById('catalog-screen').classList.remove('hidden');
+      document.getElementById('catalog-screen').classList.add('flex');
+      window.scrollTo(0,0);
+      renderProducts();
+    }
+
+    function showWelcome() {
+      document.getElementById('catalog-screen').classList.add('hidden');
+      document.getElementById('catalog-screen').classList.remove('flex');
+      document.getElementById('welcome-screen').classList.remove('hidden');
+      window.scrollTo(0,0);
+    }
+
+    function toggleAdminPanel() {
+      const modal = document.getElementById('adminModal');
+      modal.classList.toggle('hidden');
+      if (!modal.classList.contains('hidden')) {
+        renderAdminList();
+      }
+    }
+
+    function setCategory(cat, btn) {
+      selectedCategory = cat;
+      document.querySelectorAll('.cat-btn').forEach(b => {
+        b.className = "cat-btn bg-white/80 border border-kairo-dark/15 text-kairo-dark px-4 py-2 rounded-full text-xs font-medium tracking-wider whitespace-nowrap transition";
+      });
+      btn.className = "cat-btn bg-kairo-dark text-kairo-cream px-4 py-2 rounded-full text-xs font-medium tracking-wider whitespace-nowrap transition shadow-sm";
+      renderProducts();
+    }
+
+    function renderProducts() {
+      const grid = document.getElementById('productsGrid');
+      const noResults = document.getElementById('noResults');
+      const search = document.getElementById('searchInput').value.toLowerCase().trim();
+
+      const filtered = products.filter(p => {
+        const matchesCategory = selectedCategory === 'todos' || p.category === selectedCategory;
+        const matchesSearch = p.name.toLowerCase().includes(search) || p.sku.toLowerCase().includes(search);
+        return matchesCategory && matchesSearch;
+      });
+
+      if (filtered.length === 0) {
+        grid.innerHTML = '';
+        noResults.classList.remove('hidden');
+        return;
+      }
+
+      noResults.classList.add('hidden');
+      grid.innerHTML = filtered.map(p => {
+        const whatsappMsg = encodeURIComponent(
+          `¡Hola KAIRO! ✨\n\nEstoy interesada en el accesorio:\n• *Producto:* ${p.name}\n• *Código (SKU):* ${p.sku}\n• *Material:* ${p.material}\n• *Precio:* $${p.price.toFixed(2)}\n\n¿Tienen disponible?`
+        );
+        const whatsappUrl = `https://wa.me/${PHONE_NUMBER}?text=${whatsappMsg}`;
+
+        return `
+          <div class="bg-white rounded-2xl overflow-hidden border border-kairo-dark/10 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="relative aspect-square bg-kairo-cream/50 overflow-hidden">
+                <img src="${p.img}" alt="${p.name}" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/400x400?text=KAIRO'">
+                <span class="absolute top-2 right-2 text-[9px] font-bold tracking-wider px-2 py-0.5 rounded-full uppercase ${p.available ? 'bg-kairo-emerald text-white' : 'bg-red-100 text-red-700'}">
+                  ${p.available ? 'Disponible' : 'Agotado'}
+                </span>
+              </div>
+
+              <div class="p-3">
+                <div class="text-[10px] tracking-widest text-kairo-dark/50 uppercase font-mono">${p.sku}</div>
+                <h3 class="font-kairo font-bold text-xs text-kairo-dark tracking-wide line-clamp-1 my-0.5">${p.name}</h3>
+                <p class="text-[10px] text-kairo-dark/70">${p.material}</p>
+                <div class="mt-2 font-bold text-sm text-kairo-dark">$${p.price.toFixed(2)}</div>
+              </div>
+            </div>
+
+            <div class="p-3 pt-0">
+              ${p.available ? `
+                <a href="${whatsappUrl}" target="_blank" class="w-full bg-kairo-emerald hover:bg-emerald-700 text-white py-2 px-3 rounded-xl text-[11px] font-medium flex items-center justify-center gap-1.5 transition active:scale-95 shadow-sm">
+                  <i class="fa-brands fa-whatsapp text-sm"></i> Consultar
+                </a>
+              ` : `
+                <button disabled class="w-full bg-gray-200 text-gray-400 py-2 px-3 rounded-xl text-[11px] font-medium cursor-not-allowed">
+                  Agotado
+                </button>
+              `}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function saveProduct(e) {
+      e.preventDefault();
+      const newP = {
+        id: Date.now(),
+        name: document.getElementById('pName').value.trim(),
+        sku: document.getElementById('pSku').value.trim().toUpperCase(),
+        category: document.getElementById('pCategory').value,
+        price: parseFloat(document.getElementById('pPrice').value),
+        material: document.getElementById('pMaterial').value,
+        img: document.getElementById('pImg').value.trim(),
+        available: document.getElementById('pAvailable').value === 'true'
+      };
+
+      products.unshift(newP);
+      localStorage.setItem('kairo_inventory', JSON.stringify(products));
+      document.getElementById('productForm').reset();
+      renderAdminList();
+      renderProducts();
+      alert('¡Accesorio agregado correctamente!');
+    }
+
+    function renderAdminList() {
+      const list = document.getElementById('adminProductList');
+      list.innerHTML = products.map(p => `
+        <div class="flex items-center justify-between bg-white p-2.5 rounded-xl border border-kairo-dark/10">
+          <div class="flex items-center gap-3">
+            <img src="${p.img}" class="w-10 h-10 rounded-lg object-cover">
+            <div>
+              <div class="text-xs font-bold text-kairo-dark">${p.name}</div>
+              <div class="text-[10px] text-kairo-dark/60">${p.sku} • $${p.price.toFixed(2)}</div>
+            </div>
+          </div>
+          <button onclick="deleteProduct(${p.id})" class="text-red-500 hover:text-red-700 p-2 text-xs">
+            <i class="fa-solid fa-trash-can"></i>
+          </button>
+        </div>
+      `).join('');
+    }
+
+    function deleteProduct(id) {
+      if (confirm('¿Deseas eliminar este producto del catálogo?')) {
+        products = products.filter(p => p.id !== id);
+        localStorage.setItem('kairo_inventory', JSON.stringify(products));
+        renderAdminList();
+        renderProducts();
+      }
+    }
+  </script>
+</body>
+</html>
